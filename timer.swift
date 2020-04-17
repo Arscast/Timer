@@ -12,16 +12,18 @@ struct ContentView : View {
                 Text("My first app :)")
                     .font(.largeTitle)
                  Spacer()
+                Stepper(value: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(4)/*@END_MENU_TOKEN@*/, in: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Range@*/1...10/*@END_MENU_TOKEN@*/) {
+                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Stepper")/*@END_MENU_TOKEN@*/
+                }
             }
-            VStack {
+            VStack(alignment: .leading) {
                 Text("\(counter)")
+                    .font(.largeTitle)
                         .onReceive(timer) {time in
-                            if self.counter == 10{
-                                self.timer.upstream.connect().cancel()
-                            } else {
-                                print("The time is now \(time)")
-                            }
                             self.counter += 1
+                        }
+               Button(action: {}) {
+                    Text("Start/Stop")
                 }
                  Spacer()
             }
