@@ -6,16 +6,26 @@ struct ContentView : View {
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
 
     var body: some View {
-       
-            Text("\(counter)")
-                .onReceive(timer) {time in
-                    if self.counter == 10{
-                        self.timer.upstream.connect().cancel()
-                    } else {
-                        print("The time is now \(time)")
-                    }
-                    self.counter += 1
+            
+        VStack {
+            VStack {
+                Text("My first app :)")
+                    .font(.largeTitle)
+                 Spacer()
             }
+            VStack {
+                Text("\(counter)")
+                        .onReceive(timer) {time in
+                            if self.counter == 10{
+                                self.timer.upstream.connect().cancel()
+                            } else {
+                                print("The time is now \(time)")
+                            }
+                            self.counter += 1
+                }
+                 Spacer()
+            }
+        }
     }
 }
 
@@ -27,5 +37,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
 
