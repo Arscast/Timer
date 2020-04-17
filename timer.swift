@@ -11,11 +11,12 @@ struct ContentView : View {
             VStack {
                 Text("My first app :)")
                     .font(.largeTitle)
-                 Spacer()
-                Stepper(value: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(4)/*@END_MENU_TOKEN@*/, in: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Range@*/1...10/*@END_MENU_TOKEN@*/) {
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Stepper")/*@END_MENU_TOKEN@*/
+                Spacer()
+                Stepper(value: $counter, in: 1...60) {
+                    Text("Seconds")
                 }
             }
+            
             VStack(alignment: .leading) {
                 Text("\(counter)")
                     .font(.largeTitle)
@@ -39,4 +40,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
