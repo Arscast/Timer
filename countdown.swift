@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView : View {
     @State var counter = 0
     @State var go = false
-
+    
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
 
     var body: some View {
@@ -16,6 +16,7 @@ struct ContentView : View {
                 Stepper(value: $counter, in: 1...60) {
                     Text("Seconds")
                 }
+                .padding()
             }
             
             VStack() {
@@ -25,7 +26,7 @@ struct ContentView : View {
                             if self.go{
                                 self.counter -= 1
                                 if self.counter == 0{
-                                self.timer.upstream.connect().cancel()
+                                    self.go = false
                                 
                                 }
                             }
@@ -49,4 +50,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
