@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView : View {
     @State var counter = 0
     @State var go = false
+    @State var showAlert = false
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
 
@@ -27,15 +28,20 @@ struct ContentView : View {
                                 self.counter -= 1
                                 if self.counter == 0{
                                     self.go = false
-                                
+                                    self.showAlert = true
+                                } else {
+                                    self.showAlert = false
                                 }
                             }
             }
                Button(action: {
                 self.go.toggle()
                }) {
-                    Text("Start/Stop")
-                }
+                   Text("Start/Stop")
+               }
+                .alert(isPresented: $showAlert) {
+                           Alert(title: Text("Time is over"), message: Text("Finish!"))
+                       }
                  Spacer()
             }
         }
